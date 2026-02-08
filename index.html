@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Sultry Anushita 🔥</title>
+    <style>
+        :root {
+            --deep-red: #2b0000;
+            --hot-pink: #ff0055;
+            --gold: #d4af37;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, #4a0000 0%, #1a0000 100%);
+            font-family: 'Playfair Display', serif;
+            color: white;
+            overflow: hidden;
+            transition: all 1.5s ease;
+        }
+
+        /* Pulsing Glow Background */
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 0, 85, 0.05) 0%, transparent 70%);
+            animation: pulse 4s infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes pulse { from { opacity: 0.3; } to { opacity: 0.8; } }
+
+        .container {
+            z-index: 10;
+            text-align: center;
+            padding: 50px;
+            width: 90%;
+            max-width: 450px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid var(--hot-pink);
+            border-radius: 10px;
+            box-shadow: 0 0 40px rgba(255, 0, 85, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 { 
+            font-style: italic; 
+            font-size: 1.6rem; 
+            line-height: 1.5; 
+            margin-bottom: 30px; 
+            text-shadow: 0 0 10px var(--hot-pink);
+        }
+
+        .photo-reveal {
+            display: none;
+            width: 250px;
+            height: 350px;
+            margin: 0 auto 20px;
+            border: 2px solid var(--gold);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 50px var(--hot-pink);
+            animation: sultryReveal 3s ease-in;
+        }
+
+        img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9) contrast(1.1); }
+
+        .btn {
+            background: transparent;
+            color: var(--hot-pink);
+            border: 1px solid var(--hot-pink);
+            padding: 12px 30px;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: 0.4s;
+            text-transform: uppercase;
+        }
+
+        .btn:hover { background: var(--hot-pink); color: white; box-shadow: 0 0 30px var(--hot-pink); }
+
+        #noBtn {
+            background: transparent;
+            color: #555;
+            border: 1px solid #333;
+            position: absolute;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+        }
+
+        @keyframes sultryReveal { from { opacity: 0; filter: grayscale(1) blur(10px); } to { opacity: 1; filter: grayscale(0) blur(0); } }
+    </style>
+</head>
+<body>
+
+    <audio id="sultryMusic" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="glow"></div>
+
+    <div class="container" id="mainContainer">
+        <h1 id="textDisplay">Anushita... some secrets are better shared in the dark.</h1>
+        
+        <div class="photo-reveal" id="photoBox">
+            <img src="anushita.jpeg" alt="Goddess">
+        </div>
+
+        <div id="buttonGroup">
+            <button class="btn" onclick="nextStep()">TEASE ME...</button>
+        </div>
+    </div>
+
+    <script>
+        let step = 0;
+        const music = document.getElementById('sultryMusic');
+        const lines = [
+            "I've been thinking about you... and that look in your eyes.",
+            "You're not just my Valentine, you're my beautiful obsession.",
+            "I want to make you blush, then make you mine.",
+            "So tell me, Anushita... are you ready to be naughty with me?"
+        ];
+
+        function nextStep() {
+            if (step === 0) music.play().catch(() => {});
+            
+            const text = document.getElementById('textDisplay');
+            text.style.opacity = 0;
+
+            setTimeout(() => {
+                if (step < lines.length) {
+                    text.innerText = lines[step];
+                    document.querySelector('.btn').innerText = "AND THEN?";
+                    step++;
+                    text.style.opacity = 1;
+                } else {
+                    askTheQuestion();
+                }
+            }, 800);
+        }
+
+        function askTheQuestion() {
+            document.getElementById('textDisplay').innerHTML = "Will you be my Valentine and let me spoil you tonight? 🔥";
+            document.getElementById('buttonGroup').innerHTML = `
+                <button class="btn" onclick="celebrate()">YES, PLEASE</button>
+                <button class="btn" id="noBtn" onmouseover="teaseNo()">CATCH ME</button>
+            `;
+            document.getElementById('textDisplay').style.opacity = 1;
+        }
+
+        function teaseNo() {
+            const btn = document.getElementById('noBtn');
+            btn.innerText = "TOO SLOW";
+            btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            btn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+        }
+
+        function celebrate() {
+            document.body.style.background = "black";
+            document.getElementById('textDisplay').innerText = "You're mine, Anushita. Every inch of you. ❤️";
+            document.getElementById('photoBox').style.display = "block";
+            document.getElementById('buttonGroup').style.display = "none";
+            
+            // Final visual effect: Red flash
+            document.querySelector('.container').style.borderColor = "var(--gold)";
+            document.querySelector('.container').style.boxShadow = "0 0 60px var(--gold)";
+        }
+    </script>
+</body>
+</html>
